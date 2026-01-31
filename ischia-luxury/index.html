@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ISCHIA LUXURY Cruise & Charter</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;overflow-x:hidden;font-family:Poppins,sans-serif;}
+
+/* ===========================
+   NAVBAR
+=========================== */
+.navbar{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 8%;
+  transition:all .35s ease;
+  background:rgba(0,0,0,0);
+}
+.navbar.scrolled{
+  background:rgba(0,51,102,0.92);
+  backdrop-filter: blur(10px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.25);
+  padding:10px 8%;
+}
+
+/* Brand */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none;
+}
+.brand-logo{
+  width:54px;
+  height:54px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.10);
+  display:grid;
+  place-items:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+  transition:transform .25s ease;
+}
+.brand:hover .brand-logo{ transform: translateY(-2px) rotate(-2deg); }
+.brand-logo img{
+  width:38px; height:38px;
+  object-fit:contain;
+  filter:none;
+}
+.brand-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.05;
+  color:#fff;
+}
+.brand-title{
+  font-family:"Patrick Hand", cursive;
+  font-size:30px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin:0;
+}
+.brand-subtitle{
+  font-size:14px;
+  font-weight:300;
+  opacity:0.9;
+  margin-top:3px;
+}
+
+/* Menu links */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.nav-links a{
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  padding:10px 18px;
+  border-radius:25px;
+  transition:background .25s ease, transform .25s ease;
+}
+.nav-links a:hover,
+.nav-links a.active{
+  background:#ff6b00;
+  transform: translateY(-2px);
+}
+
+/* Right area */
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* ===========================
+   LANGUAGE DROPDOWN
+=========================== */
+.lang-menu{ position:relative; }
+.lang-btn{
+  font-size:14px;
+  font-weight:600;
+  padding:10px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.10);
+  color:#fff;
+  cursor:pointer;
+  transition:all .25s ease;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.lang-btn:hover{
+  transform: translateY(-2px) scale(1.02);
+  background:rgba(255,255,255,0.16);
+  box-shadow:0 14px 30px rgba(0,0,0,0.25);
+}
+.lang-btn:active{ transform: scale(0.98); }
+
+.lang-dropdown{
+  position:absolute;
+  right:0;
+  top:52px;
+  min-width:180px;
+  background:rgba(10,20,35,0.95);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 18px 45px rgba(0,0,0,0.35);
+  transform: translateY(10px);
+  opacity:0;
+  pointer-events:none;
+  transition:all .25s ease;
+}
+.lang-menu.open .lang-dropdown{
+  opacity:1;
+  transform: translateY(0);
+  pointer-events:auto;
+}
+.lang-dropdown button{
+  width:100%;
+  padding:12px 14px;
+  background:transparent;
+  border:0;
+  color:#fff;
+  font-size:14px;
+  text-align:left;
+  cursor:pointer;
+  transition:background .2s ease;
+}
+.lang-dropdown button:hover{ background:rgba(255,255,255,0.10); }
+
+/* ===========================
+   HAMBURGER (MOBILE)
+=========================== */
+.hamburger{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.10);
+  cursor:pointer;
+  transition:all .25s ease;
+  position:relative;
+}
+.hamburger:hover{
+  transform: translateY(-2px);
+  background:rgba(255,255,255,0.16);
+}
+.hamburger span{
+  position:absolute;
+  left:50%;
+  width:18px;
+  height:2px;
+  background:#fff;
+  transform: translateX(-50%);
+  border-radius:2px;
+  transition:all .25s ease;
+}
+.hamburger span:nth-child(1){ top:15px; }
+.hamburger span:nth-child(2){ top:21px; }
+.hamburger span:nth-child(3){ top:27px; }
+
+.navbar.menu-open .hamburger span:nth-child(1){
+  top:21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.navbar.menu-open .hamburger span:nth-child(2){ opacity:0; }
+.navbar.menu-open .hamburger span:nth-child(3){
+  top:21px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* MOBILE MENU PANEL */
+.mobile-panel{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding: 92px 8% 16px 8%;
+  background:rgba(0,51,102,0.96);
+  backdrop-filter: blur(10px);
+  box-shadow:0 20px 45px rgba(0,0,0,0.35);
+  border-top:1px solid rgba(255,255,255,0.15);
+  z-index: 9998;
+}
+.navbar.menu-open + .mobile-panel{
+  display:block;
+  animation:drop .25s ease;
+}
+@keyframes drop{
+  from{opacity:0; transform: translateY(-10px);}
+  to{opacity:1; transform: translateY(0);}
+}
+.mobile-links{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.mobile-links a{
+  display:block;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  padding:12px 14px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.08);
+  transition:all .2s ease;
+}
+.mobile-links a:hover{
+  background:rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   HERO
+=========================== */
+.hero{
+  height:100vh;
+  background:url("/images/ischia.jpg") center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  filter: saturate(1.08) contrast(1.05);
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.10));
+  pointer-events:none;
+  z-index:1;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  color:white;
+  opacity:0;
+  transform:translateY(50px);
+  transition:all 1s ease;
+  padding:0 14px;
+}
+.hero-content.show{ opacity:1; transform:translateY(0); }
+.hero-title{
+  font-size:3rem;
+  margin-bottom:15px;
+  text-shadow:2px 2px 10px rgba(0,0,0,0.7);
+}
+.hero-subtitle{
+  font-size:1.25rem;
+  margin:0 auto 25px auto;
+  max-width:900px;
+  line-height:1.55;
+  text-shadow:1px 1px 8px rgba(0,0,0,0.6);
+}
+
+/* bottone */
+.btn-primary{
+  padding:12px 30px;
+  background:#ff6b00;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:30px;
+  transition:background 0.3s, transform .2s ease;
+  display:inline-block;
+  border:none;
+  cursor:pointer;
+}
+.btn-primary:hover{
+  background:#ff8500;
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   CAROUSEL
+=========================== */
+.carousel-section{padding:80px 0;text-align:center;}
+.carousel-section h2{font-size:2.2rem;margin-bottom:40px;color:#003366;}
+
+.carousel{
+  width: min(900px, 88vw);
+  margin:auto;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+.carousel-track{
+  display:flex;
+  width:300%;
+  animation:scroll 18s linear infinite;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+.carousel-slide{
+  position:relative;
+  width:100%;
+  height:360px;
+  overflow:hidden;
+  background:#000;
+}
+.carousel-slide::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: var(--bg);
+  background-size:cover;
+  background-position:center;
+  filter: blur(18px) brightness(0.72);
+  transform: scale(1.12);
+}
+.carousel-slide img{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  object-position:50% 55%;
+  transform: translateZ(0);
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  image-rendering:auto;
+}
+.carousel-slide.n2 img{ object-position:50% 62%; }
+.carousel-slide.n3 img{ object-position:50% 62%; }
+
+@media (max-width:560px){
+  .carousel-slide{ height:260px; }
+}
+@keyframes scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-66.66%);}
+}
+
+/* ===========================
+   SEZIONI (offers)
+=========================== */
+.offers{
+  padding:90px 20px;
+  background:linear-gradient(180deg,#ffffff, #f7f9fc);
+  text-align:center;
+}
+.offers h2{
+  font-size:2.2rem;
+  color:#003366;
+  margin-bottom:10px;
+}
+.offers p{
+  max-width:900px;
+  margin:0 auto 40px auto;
+  color:#16324f;
+  opacity:0.9;
+  line-height:1.5;
+}
+.offers-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:18px;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 10px;
+}
+.offer-card{
+  text-align:left;
+  background:#fff;
+  border-radius:20px;
+  padding:18px 18px 16px 18px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.10);
+  border:1px solid rgba(0,0,0,0.05);
+  transition: transform .25s ease, box-shadow .25s ease;
+  position:relative;
+  overflow:hidden;
+}
+.offer-card:hover{
+  transform: translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,0.16);
+}
+.offer-badge{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:rgba(0,51,102,0.08);
+  border:1px solid rgba(0,51,102,0.10);
+  font-size:24px;
+  margin-bottom:12px;
+}
+.offer-card h3{
+  margin:0 0 8px 0;
+  font-size:1.05rem;
+  color:#003366;
+}
+.offer-card ul{
+  margin:0;
+  padding-left:18px;
+  color:#2b3f57;
+  line-height:1.55;
+}
+
+/* ===========================
+   DESTINAZIONI (hover desktop + sempre visibile su mobile)
+=========================== */
+.destinations{padding:80px 20px;text-align:center;}
+.destinations h2{font-size:2.2rem;color:#003366;margin-bottom:40px;}
+.destinations-row{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;}
+.destination-card{
+  position:relative;
+  width:300px;
+  height:200px;
+  overflow:hidden;
+  border-radius:20px;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.destination-card img{width:100%;height:100%;object-fit:cover;display:block;}
+.destination-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 18px 34px rgba(0,0,0,0.30);}
+
+.destination-info{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  padding:14px 14px 12px 14px;
+  background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.75));
+  color:#fff;
+  opacity:0;
+  transform: translateY(10px);
+  transition:opacity 0.35s ease, transform 0.35s ease;
+  text-align:left;
+}
+.destination-card:hover .destination-info{
+  opacity:1;
+  transform: translateY(0);
+}
+.destination-info h3{
+  margin:0 0 6px 0;
+  font-size:1.05rem;
+  font-weight:700;
+}
+.destination-info p{
+  margin:0;
+  font-size:0.92rem;
+  line-height:1.25;
+  opacity:0.95;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ✅ su mobile sempre visibile (niente hover) */
+@media (max-width: 860px){
+  .destination-info{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   MODAL + SLIDESHOW
+=========================== */
+.modal{
+  display:none;
+  position:fixed;
+  z-index:2000;
+  left:0; top:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.82);
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  padding: 24px 14px;
+}
+.modal-inner{
+  width: min(980px, 92vw);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.modal-img-wrap{
+  position:relative;
+  width:100%;
+  height: clamp(320px, 62vh, 680px);
+  border-radius:16px;
+  overflow:hidden;
+  background: rgba(0,0,0,0.45);
+  box-shadow:0 16px 45px rgba(0,0,0,0.45);
+}
+.modal-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transform: translateZ(0);
+}
+@media (max-width: 520px){
+  .modal-img-wrap{ height: clamp(340px, 58vh, 560px); }
+}
+.modal-desc{
+  color:white;
+  font-size:1.05rem;
+  text-align:center;
+  max-width: 900px;
+  line-height: 1.35;
+}
+.close{
+  position:absolute;
+  top:16px;
+  right:20px;
+  color:white;
+  font-size:40px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:color 0.3s;
+  user-select:none;
+}
+.close:hover{color:#ff6b00;}
+.modal-btn{
+  display:inline-block;
+  margin: 6px auto 0 auto;
+  padding:12px 30px;
+  background:#ff6b00;
+  color:white;
+  font-weight:bold;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:1.05rem;
+  transition:background 0.3s,transform 0.3s;
+}
+.modal-btn:hover{background:#e55a00;transform:scale(1.05);}
+
+.slide-btn{
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.25);
+  background: rgba(10,20,35,0.55);
+  backdrop-filter: blur(8px);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  transition: transform .2s ease, background .2s ease, opacity .2s ease;
+  user-select:none;
+  z-index: 5;
+}
+.slide-btn:hover{
+  transform: translateY(-50%) scale(1.06);
+  background: rgba(10,20,35,0.72);
+}
+.slide-prev{ left: 14px; }
+.slide-next{ right: 14px; }
+.slide-btn.is-disabled{ opacity:0; pointer-events:none; }
+
+.slide-counter{
+  color: rgba(255,255,255,0.9);
+  font-size: 0.95rem;
+  background: rgba(10,20,35,0.55);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+  padding: 6px 10px;
+  backdrop-filter: blur(8px);
+}
+
+/* Booking */
+.booking-section{padding:90px 20px;background:#f5f5f5;text-align:center;}
+.booking-section h2{font-size:2.2rem;color:#003366;margin-bottom:10px;}
+.booking-form{max-width:520px;margin:0 auto;display:grid;gap:14px;background:white;padding:25px;border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,0.15);}
+.booking-form input,.booking-form select{padding:14px 16px;border-radius:14px;border:1px solid #ddd;font-size:1rem;outline:none;}
+.booking-form button{padding:14px 16px;border:none;border-radius:14px;background:#ff6b00;color:white;font-weight:700;font-size:1.05rem;cursor:pointer;transition:transform 0.2s ease, background 0.2s ease;}
+.booking-form button:hover{background:#ff8500;transform:scale(1.03);}
+
+/* Contatti */
+.info-row{display:flex;gap:30px;padding:70px 10%;align-items:stretch;background:linear-gradient(135deg,#001a33,#003366);}
+.info-box{flex:1;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:22px;box-shadow:0 10px 25px rgba(0,0,0,0.25);backdrop-filter:blur(6px);}
+.info-box h2{color:#ffffff;margin-top:0;}
+.map-text,.contact-text,.small-note{color:rgba(255,255,255,0.9);}
+.whatsapp-btn{display:inline-block;width:100%;text-align:center;padding:14px 18px;border-radius:16px;font-weight:800;text-decoration:none;background:#25D366;color:white;transition:transform .25s ease,box-shadow .25s ease;box-shadow:0 12px 25px rgba(0,0,0,0.35);}
+.whatsapp-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 18px 35px rgba(0,0,0,0.45);}
+
+/* WhatsApp floating */
+.whatsapp-float{
+  position:fixed; bottom:25px; right:25px; width:70px; height:70px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:white; border-radius:50%; font-size:32px; display:flex;
+  align-items:center; justify-content:center; text-decoration:none;
+  box-shadow:0 0 15px rgba(37,211,102,0.6),0 0 25px rgba(18,140,126,0.5);
+  z-index:9999; animation:pulse 2s infinite; transition:transform 0.3s ease,box-shadow 0.3s ease;
+}
+@keyframes pulse{
+  0%{transform:scale(1);box-shadow:0 0 15px rgba(37,211,102,0.6),0 0 25px rgba(18,140,126,0.5);}
+  50%{transform:scale(1.1);box-shadow:0 0 25px rgba(37,211,102,0.8),0 0 35px rgba(18,140,126,0.7);}
+  100%{transform:scale(1);box-shadow:0 0 15px rgba(37,211,102,0.6),0 0 25px rgba(18,140,126,0.5);}
+}
+.whatsapp-float:hover{
+  transform:scale(1.3) rotate(-5deg);
+  box-shadow:0 0 35px rgba(37,211,102,1),0 0 50px rgba(18,140,126,0.9);
+  animation:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){ .info-row{flex-direction:column;padding:45px 6%;} }
+@media(max-width:860px){
+  .nav-links{ display:none; }
+  .hamburger{ display:block; }
+  .brand-title{ font-size:22px; }
+  .brand-subtitle{ font-size:12px; }
+  .brand-logo{ width:46px; height:46px; }
+  .brand-logo img{ width:32px; height:32px; }
+  .hero-title{ font-size:2.2rem; }
+  .hero-subtitle{ font-size:1.05rem; }
+}
+@media (max-width: 420px){
+  .navbar{ padding: 10px 14px; }
+  .brand{ position: absolute; left: 50%; transform: translateX(-50%); gap: 10px; }
+  .brand-logo{ width: 42px; height: 42px; border-radius: 12px; }
+  .brand-logo img{ width: 26px; height: 26px; }
+  .brand-title{ font-size: 20px; letter-spacing: 0.5px; white-space: nowrap; }
+  .brand-subtitle{ font-size: 11px; white-space: nowrap; }
+}
+
+/* Anti blur generale */
+.destination-card img,
+.modal-img{
+  display:block;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  image-rendering: auto;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a class="brand" href="#home">
+    <div class="brand-logo">
+      <img src="/img/anchor-logo.png" alt="Logo">
+    </div>
+    <div class="brand-text">
+      <h1 class="brand-title">Ischia Luxury</h1>
+      <div class="brand-subtitle">Cruise & Charter</div>
+    </div>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="active" id="nav-home">Home</a></li>
+    <li><a href="#tour" id="nav-gozzi">I nostri gozzi</a></li>
+    <li><a href="#chi-siamo" id="nav-about">Chi siamo</a></li>
+    <li><a href="#offriamo" id="nav-offers">Cosa offriamo</a></li>
+    <li><a href="#destinazioni" id="nav-dest">Destinazioni</a></li>
+    <li><a href="#prenota" id="nav-book">Prenota</a></li>
+    <li><a href="#contatti" id="nav-contacts">Contatti</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-menu" id="langMenu">
+      <button class="lang-btn" id="langBtn" type="button">
+        🌍 <span id="currentLangLabel">IT</span> ▾
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button type="button" data-lang="it">🇮🇹 Italiano</button>
+        <button type="button" data-lang="en">🇬🇧 English</button>
+        <button type="button" data-lang="es">🇪🇸 Español</button>
+        <button type="button" data-lang="de">🇩🇪 Deutsch</button>
+      </div>
+    </div>
+
+    <button class="hamburger" id="hamburger" type="button" aria-label="Apri menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE PANEL -->
+<div class="mobile-panel" id="mobilePanel">
+  <ul class="mobile-links">
+    <li><a href="#home" class="m-link" id="m-home">Home</a></li>
+    <li><a href="#tour" class="m-link" id="m-gozzi">I nostri gozzi</a></li>
+    <li><a href="#chi-siamo" class="m-link" id="m-about">Chi siamo</a></li>
+    <li><a href="#offriamo" class="m-link" id="m-offers">Cosa offriamo</a></li>
+    <li><a href="#destinazioni" class="m-link" id="m-dest">Destinazioni</a></li>
+    <li><a href="#prenota" class="m-link" id="m-book">Prenota</a></li>
+    <li><a href="#contatti" class="m-link" id="m-contacts">Contatti</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-content">
+    <h1 id="hero-title" class="hero-title">Benvenuti a Ischia Luxury</h1>
+    <p id="hero-subtitle" class="hero-subtitle">
+      Il vostro viaggio alla scoperta delle meraviglie di Ischia inizia qui. Esplorate le acque cristalline e i paesaggi mozzafiato a bordo dei nostri esclusivi gozzi. Siamo pronti a offrirvi esperienze indimenticabili. Benvenuti a bordo!
+    </p>
+    <button class="btn-primary" id="hero-btn" type="button">Prenota ora</button>
+  </div>
+</div>
+
+<!-- Carousel -->
+<section class="carousel-section" id="tour">
+  <h2 id="tour-title">I nostri gozzi</h2>
+
+  <div class="carousel">
+    <div class="carousel-track">
+      <div class="carousel-slide n1" style="--bg:url('/images/nave1.jpg')">
+        <img src="/images/nave1.jpg" alt="Gozzo - Nave 1">
+      </div>
+      <div class="carousel-slide n2" style="--bg:url('/images/nave2.jpg')">
+        <img src="/images/nave2.jpg" alt="Gozzo - Nave 2">
+      </div>
+      <div class="carousel-slide n3" style="--bg:url('/images/nave3.jpg')">
+        <img src="/images/nave3.jpg" alt="Gozzo - Nave 3">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHI SIAMO -->
+<section class="offers" id="chi-siamo">
+  <h2 id="about-title">Chi siamo</h2>
+  <p id="about-text">
+    ISCHIA LUXURY nasce dalla passione per il mare e per la bellezza di Ischia.
+    Siamo un team di esperti locali che per anni hanno solcato i vari oceani del globo
+    e che amano condividere la magia dell'isola con i nostri ospiti.
+    La nostra missione è offrire esperienze autentiche e indimenticabili,
+    nel rispetto della tradizione e dell'ambiente.
+  </p>
+</section>
+
+<!-- COSA OFFRIAMO -->
+<section class="offers" id="offriamo">
+  <h2 id="offers-title">Cosa offriamo</h2>
+  <p id="offers-subtitle">
+    Esperienze premium in barca pensate per chi vuole vivere Ischia (e dintorni) dal punto di vista più bello: il mare.
+  </p>
+
+  <div class="offers-grid">
+    <div class="offer-card">
+      <div class="offer-badge">🚤</div>
+      <h3 id="offer1-title">Tour privati e di gruppo</h3>
+      <ul>
+        <li id="offer1-li1">Giro dell’isola e soste bagno</li>
+        <li id="offer1-li2">Grotte e calette nascoste</li>
+        <li id="offer1-li3">Itinerari personalizzati</li>
+      </ul>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-badge">🌅</div>
+      <h3 id="offer2-title">Sunset experience</h3>
+      <ul>
+        <li id="offer2-li1">Tramonto in barca</li>
+        <li id="offer2-li2">Atmosfera romantica</li>
+        <li id="offer2-li3">Foto e momenti unici</li>
+      </ul>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-badge">🧊</div>
+      <h3 id="offer3-title">Comfort a bordo</h3>
+      <ul>
+        <li id="offer3-li1">Relax totale e musica</li>
+        <li id="offer3-li2">Acqua, soft drinks e prosecco</li>
+        <li id="offer3-li3">Assistenza dedicata</li>
+      </ul>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-badge">🗺️</div>
+      <h3 id="offer4-title">Partenze flessibili</h3>
+      <ul>
+        <li id="offer4-li1">Mezza giornata o giornata intera</li>
+        <li id="offer4-li2">Orari personalizzabili</li>
+        <li id="offer4-li3">Organizzazione semplice</li>
+      </ul>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-badge">📸</div>
+      <h3 id="offer5-title">Spot fotografici top</h3>
+      <ul>
+        <li id="offer5-li1">Punti panoramici dal mare</li>
+        <li id="offer5-li2">Acque trasparenti</li>
+        <li id="offer5-li3">Ricordi “wow” garantiti</li>
+      </ul>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-badge">💬</div>
+      <h3 id="offer6-title">Prenotazione veloce</h3>
+      <ul>
+        <li id="offer6-li1">Conferma rapida su WhatsApp</li>
+        <li id="offer6-li2">Info immediate</li>
+        <li id="offer6-li3">Nessuno stress</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Destinations -->
+<section class="destinations" id="destinazioni">
+  <h2 id="dest-title">Destinazioni</h2>
+  <div class="destinations-row" id="destinationsContainer"></div>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal" aria-hidden="true">
+  <span class="close" onclick="closeModal()">&times;</span>
+
+  <div class="modal-inner">
+    <div class="modal-img-wrap">
+      <img class="modal-img" id="modal-img" src="" alt="">
+      <button class="slide-btn slide-prev" id="slidePrev" type="button" aria-label="Foto precedente">‹</button>
+      <button class="slide-btn slide-next" id="slideNext" type="button" aria-label="Foto successiva">›</button>
+    </div>
+
+    <div class="slide-counter" id="slideCounter">1 / 1</div>
+    <div class="modal-desc" id="modal-desc"></div>
+    <a id="modal-book" href="#" target="_blank" class="modal-btn">Prenota ora su WhatsApp</a>
+  </div>
+</div>
+
+<!-- Booking Section -->
+<section id="prenota" class="booking-section">
+  <h2 id="booking-title">Prenota il tuo tour</h2>
+  <p id="booking-subtitle">Compila il modulo e ricevi conferma immediata su WhatsApp</p>
+  <form id="bookingForm" class="booking-form">
+    <input type="text" id="nome" placeholder="Nome e Cognome" required>
+    <input type="date" id="data" required>
+    <select id="tour">
+      <option value="Giro dell'isola" id="tour-opt-1">Giro dell'isola</option>
+      <option value="Tour grotte" id="tour-opt-2">Tour grotte</option>
+      <option value="Tramonto in barca" id="tour-opt-3">Tramonto in barca</option>
+    </select>
+    <input type="number" id="persone" placeholder="Numero persone" min="1" required>
+    <button type="submit" id="booking-btn">Invia prenotazione</button>
+  </form>
+</section>
+
+<!-- Contatti -->
+<section class="info-row" id="contatti">
+  <div class="info-box">
+    <h2 id="where-title">📍 Dove siamo</h2>
+    <iframe src="https://www.google.com/maps?q=Porto%20di%20Lacco%20Ameno&output=embed" width="100%" height="250"
+      style="border:0;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.2);" allowfullscreen="" loading="lazy"></iframe>
+    <p class="map-text" id="where-text">🚤 Ci trovi qui – Porto di Lacco Ameno</p>
+  </div>
+
+  <div class="info-box">
+    <h2 id="contacts-title">💬 Contatti</h2>
+    <p class="contact-text" id="contacts-text">Scrivici su WhatsApp per info e prenotazioni 💙</p>
+
+    <!-- ✅ EMAIL RIPRISTINATA -->
+    <p class="contact-text" id="contacts-email">
+      📧 Email:
+      <a href="mailto:ischialuxury@hotmail.com" style="color:#fff;font-weight:700;">
+        ischialuxury@hotmail.com
+      </a>
+    </p>
+
+    <a class="whatsapp-btn" target="_blank" id="contacts-wa-btn"
+      href="https://wa.me/393793382681?text=Ciao! Vorrei prenotare un tour in barca 🚤">
+      Prenota su WhatsApp
+    </a>
+
+    <p class="small-note" id="contacts-note">Rispondiamo velocemente 📲</p>
+  </div>
+</section>
+
+
+<!-- ✅ WhatsApp floating (NUMERO AGGIORNATO) -->
+<a href="https://wa.me/393793382681" target="_blank" class="whatsapp-float" aria-label="WhatsApp">💬</a>
+
+<script>
+/* ===========================
+   NAVBAR SCROLL + HERO
+=========================== */
+const navbar = document.getElementById("navbar");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 40) navbar.classList.add("scrolled");
+  else navbar.classList.remove("scrolled");
+});
+window.addEventListener("load", () => {
+  const hc = document.querySelector(".hero-content");
+  if (hc) hc.classList.add("show");
+});
+
+/* ✅ Hero button (fallback WhatsApp NUMERO AGGIORNATO) */
+const heroBtn = document.getElementById("hero-btn");
+if (heroBtn) {
+  heroBtn.addEventListener("click", () => {
+    const target = document.getElementById("prenota");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    else window.open("https://wa.me/393793382681", "_blank");
+  });
+}
+
+/* ===========================
+   MOBILE MENU
+=========================== */
+const hamburger = document.getElementById("hamburger");
+const mobilePanel = document.getElementById("mobilePanel");
+
+if (hamburger) hamburger.addEventListener("click", () => navbar.classList.toggle("menu-open"));
+
+document.querySelectorAll(".m-link").forEach(link =>
+  link.addEventListener("click", () => navbar.classList.remove("menu-open"))
+);
+
+window.addEventListener("click", (e) => {
+  const clickedInsideNavbar = navbar?.contains(e.target);
+  const clickedInsidePanel = mobilePanel?.contains(e.target);
+  if (!clickedInsideNavbar && !clickedInsidePanel) navbar.classList.remove("menu-open");
+});
+
+/* ===========================
+   TRADUZIONI COMPLETE
+=========================== */
+let currentLang = localStorage.getItem("siteLang") || "it";
+
+/* ✅ NUMERO UNICO PER TUTTI I LINK WHATSAPP */
+const phone = "393793382681";
+
+const translations = {
+  it: {
+    nav: { home:"Home", gozzi:"I nostri gozzi", about:"Chi siamo", offers:"Cosa offriamo", dest:"Destinazioni", book:"Prenota", contacts:"Contatti" },
+
+    heroTitle:"Benvenuti a Ischia Luxury",
+    heroSubtitle:"Il vostro viaggio alla scoperta delle meraviglie di Ischia inizia qui. Esplorate le acque cristalline e i paesaggi mozzafiato a bordo dei nostri esclusivi gozzi. Siamo pronti a offrirvi esperienze indimenticabili. Benvenuti a bordo!",
+    heroBtn:"Prenota ora",
+
+    tourTitle:"I nostri gozzi",
+
+    aboutTitle:"Chi siamo",
+    aboutText:"ISCHIA LUXURY nasce dalla passione per il mare e per la bellezza di Ischia. Siamo un team di esperti locali che per anni hanno solcato i vari oceani del globo e che amano condividere la magia dell'isola con i nostri ospiti. La nostra missione è offrire esperienze autentiche e indimenticabili, nel rispetto della tradizione e dell'ambiente.",
+
+    offersTitle:"Cosa offriamo",
+    offersSubtitle:"Esperienze premium in barca pensate per chi vuole vivere Ischia (e dintorni) dal punto di vista più bello: il mare.",
+    offerCards: [
+      { title:"Tour privati e di gruppo", li:["Giro dell’isola e soste bagno","Grotte e calette nascoste","Itinerari personalizzati"] },
+      { title:"Sunset experience", li:["Tramonto in barca","Atmosfera romantica","Foto e momenti unici"] },
+      { title:"Comfort a bordo", li:["Relax totale e musica","Acqua, soft drinks e prosecco","Assistenza dedicata"] },
+      { title:"Partenze flessibili", li:["Mezza giornata o giornata intera","Orari personalizzabili","Organizzazione semplice"] },
+      { title:"Spot fotografici top", li:["Punti panoramici dal mare","Acque trasparenti","Ricordi “wow” garantiti"] },
+      { title:"Prenotazione veloce", li:["Conferma rapida su WhatsApp","Info immediate","Nessuno stress"] }
+    ],
+
+    destTitle:"Destinazioni",
+    destinations: [
+      {
+        title:"Isola d'Ischia", prefix:"ischia",
+        short:"Esplorate le meravigliose coste e le incantevoli baie.",
+        desc:"Esplorate le meravigliose coste dell' isola d' ischia e le sue incantevoli baie. Lasciatevi trasportare dalla marea e fatevi accarezzare dalla brezza fresca isolana."
+      },
+      {
+        title:"Isola di Procida", prefix:"procida",
+        short:"Procida (Capitale della cultura 2022) e l’isola di Vivara.",
+        desc:"Provate l'emozione di esplorare le fantastiche coste dell'isola di Procida, nominata capitale della cultura italiana 2022, e dell' isola di Vivara, un isolotto completamente disabitato nonché riserva naturale; sempre a bordo di uno dei nostri fantastici gozzi, accompagnati da skipper professionali."
+      },
+      {
+        title:"Tour Personalizzati", prefix:"tour",
+        short:"Esperienze su misura: privati o di gruppo, come preferite.",
+        desc:"Offriamo una vasta gamma di servizi personalizzati per rendere la vostra esperienza a Ischia indimenticabile. Dai tour privati alle escursioni di gruppo, troveremo la soluzione perfetta per voi. Scoprite i nostri servizi e preparatevi a vivere momenti unici."
+      },
+      {
+        title:"Sunset", prefix:"sunset",
+        short:"Tramonto in barca e prosecco: un momento da ricordare.",
+        desc:"Celebrate i vostri momenti speciali a bordo dei nostri gozzi, con servizi personalizzati per ogni occasione. Lasciatevi accarezzare da un tramonto isolano, mentre sorseggiate del buon prosecco italiano."
+      },
+      {
+        title:"Trasferimenti da/per Napoli", prefix:"napoli",
+        short:"Transfer privato comodo e veloce da/per Napoli.",
+        desc:"Prenotate un transferimento privato da/per Napoli."
+      },
+      {
+        title:"Trasferimenti da/per Pozzuoli", prefix:"pozzuoli",
+        short:"Transfer privato comodo e veloce da/per Pozzuoli.",
+        desc:"Prenotate un trasferimento privato da/per Pozzuoli."
+      }
+    ],
+
+    bookingTitle:"Prenota il tuo tour",
+    bookingSubtitle:"Compila il modulo e ricevi conferma immediata su WhatsApp",
+    namePlaceholder:"Nome e Cognome",
+    peoplePlaceholder:"Numero persone",
+    bookingBtn:"Invia prenotazione",
+    tourOptions:["Giro dell'isola","Tour grotte","Tramonto in barca"],
+
+    modalBtn:"Prenota ora su WhatsApp",
+
+    whereTitle:"📍 Dove siamo",
+    whereText:"🚤 Ci trovi qui – Porto di Lacco Ameno",
+    contactsTitle:"💬 Contatti",
+    contactsText:"Scrivici su WhatsApp per info e prenotazioni 💙",
+    contactsBtn:"Prenota su WhatsApp",
+    contactsNote:"Rispondiamo velocemente 📲",
+
+    waContactText:"Ciao! Vorrei prenotare un tour in barca 🚤",
+    waModalTemplate:(destTitle)=>`Ciao! Vorrei prenotare un tour in barca 🚤\nDestinazione: ${destTitle}\nData:\nNumero persone:`,
+    waBookingTemplate:(nome,data,tour,persone)=>`Ciao! Vorrei prenotare un tour in barca 🚤\nNome: ${nome}\nData: ${data}\nTour: ${tour}\nNumero persone: ${persone}`
+  },
+
+  en: {
+    nav: { home:"Home", gozzi:"Our gozzi", about:"About us", offers:"What we offer", dest:"Destinations", book:"Book", contacts:"Contacts" },
+
+    heroTitle:"Welcome to Ischia Luxury",
+    heroSubtitle:"Your journey to discover the wonders of Ischia starts here. Explore crystal-clear waters and breathtaking views aboard our exclusive gozzi. We are ready to offer unforgettable experiences. Welcome on board!",
+    heroBtn:"Book now",
+
+    tourTitle:"Our gozzi",
+
+    aboutTitle:"About us",
+    aboutText:"ISCHIA LUXURY was born from a passion for the sea and the beauty of Ischia. We are a team of local experts who have sailed across oceans for years and love sharing the island’s magic with our guests. Our mission is to offer authentic, unforgettable experiences, respecting tradition and the environment.",
+
+    offersTitle:"What we offer",
+    offersSubtitle:"Premium boat experiences designed to enjoy Ischia (and beyond) from the best perspective: the sea.",
+    offerCards: [
+      { title:"Private & group tours", li:["Island tour and swim stops","Caves and hidden coves","Custom itineraries"] },
+      { title:"Sunset experience", li:["Sunset cruise","Romantic atmosphere","Photos and unforgettable moments"] },
+      { title:"Onboard comfort", li:["Total relaxation and music","Water, soft drinks and prosecco","Dedicated assistance"] },
+      { title:"Flexible departures", li:["Half day or full day","Flexible schedules","Easy organization"] },
+      { title:"Top photo spots", li:["Sea-view panoramas","Crystal-clear waters","“Wow” memories guaranteed"] },
+      { title:"Fast booking", li:["Quick confirmation on WhatsApp","Instant info","No stress"] }
+    ],
+
+    destTitle:"Destinations",
+    destinations: [
+      {
+        title:"Ischia Island", prefix:"ischia",
+        short:"Explore stunning coasts and charming bays.",
+        desc:"Explore the wonderful coasts of Ischia and its enchanting bays. Let the tide carry you and enjoy the fresh island breeze."
+      },
+      {
+        title:"Procida Island", prefix:"procida",
+        short:"Procida (Italian Capital of Culture 2022) and Vivara.",
+        desc:"Feel the thrill of exploring the fantastic coasts of Procida, named Italy’s Capital of Culture 2022, and the island of Vivara, a completely uninhabited islet and nature reserve—always aboard one of our amazing gozzi, accompanied by professional skippers."
+      },
+      {
+        title:"Custom Tours", prefix:"tour",
+        short:"Tailor-made experiences: private or group.",
+        desc:"We offer a wide range of personalized services to make your Ischia experience unforgettable. From private tours to group excursions, we’ll find the perfect solution for you. Discover our services and get ready to live unique moments."
+      },
+      {
+        title:"Sunset", prefix:"sunset",
+        short:"Island sunset + Italian prosecco: pure magic.",
+        desc:"Celebrate your special moments aboard our gozzi, with personalized services for every occasion. Let an island sunset embrace you while you sip excellent Italian prosecco."
+      },
+      {
+        title:"Transfers to/from Naples", prefix:"napoli",
+        short:"Book a private transfer to/from Naples.",
+        desc:"Book a private transfer to/from Naples."
+      },
+      {
+        title:"Transfers to/from Pozzuoli", prefix:"pozzuoli",
+        short:"Book a private transfer to/from Pozzuoli.",
+        desc:"Book a private transfer to/from Pozzuoli."
+      }
+    ],
+
+    bookingTitle:"Book your tour",
+    bookingSubtitle:"Fill in the form and get instant confirmation on WhatsApp",
+    namePlaceholder:"Full name",
+    peoplePlaceholder:"Number of people",
+    bookingBtn:"Send booking request",
+    tourOptions:["Island tour","Caves tour","Sunset cruise"],
+
+    modalBtn:"Book now on WhatsApp",
+
+    whereTitle:"📍 Where we are",
+    whereText:"🚤 Find us here – Port of Lacco Ameno",
+    contactsTitle:"💬 Contacts",
+    contactsText:"Message us on WhatsApp for info and bookings 💙",
+    contactsBtn:"Book on WhatsApp",
+    contactsNote:"We reply quickly 📲",
+
+    waContactText:"Hi! I'd like to book a boat tour 🚤",
+    waModalTemplate:(destTitle)=>`Hi! I'd like to book a boat tour 🚤\nDestination: ${destTitle}\nDate:\nNumber of people:`,
+    waBookingTemplate:(nome,data,tour,persone)=>`Hi! I'd like to book a boat tour 🚤\nName: ${nome}\nDate: ${data}\nTour: ${tour}\nNumber of people: ${persone}`
+  },
+
+  es: {
+    nav: { home:"Inicio", gozzi:"Nuestros gozzi", about:"Quiénes somos", offers:"Qué ofrecemos", dest:"Destinos", book:"Reservar", contacts:"Contactos" },
+
+    heroTitle:"Bienvenidos a Ischia Luxury",
+    heroSubtitle:"Tu viaje para descubrir las maravillas de Ischia comienza aquí. Explora aguas cristalinas y paisajes impresionantes a bordo de nuestros exclusivos gozzi. Estamos listos para ofrecer experiencias inolvidables. ¡Bienvenidos a bordo!",
+    heroBtn:"Reservar ahora",
+
+    tourTitle:"Nuestros gozzi",
+
+    aboutTitle:"Quiénes somos",
+    aboutText:"ISCHIA LUXURY nace de la pasión por el mar y por la belleza de Ischia. Somos un equipo de expertos locales que durante años han navegado por océanos y les encanta compartir la magia de la isla con nuestros huéspedes. Nuestra misión es ofrecer experiencias auténticas e inolvidables, respetando la tradición y el medio ambiente.",
+
+    offersTitle:"Qué ofrecemos",
+    offersSubtitle:"Experiencias premium en barco para vivir Ischia (y alrededores) desde la mejor perspectiva: el mar.",
+    offerCards: [
+      { title:"Tours privados y en grupo", li:["Vuelta a la isla y paradas para nadar","Cuevas y calas escondidas","Itinerarios personalizados"] },
+      { title:"Experiencia al atardecer", li:["Paseo al atardecer","Ambiente romántico","Fotos y momentos únicos"] },
+      { title:"Confort a bordo", li:["Relax total y música","Agua, soft drinks y prosecco","Asistencia dedicada"] },
+      { title:"Salidas flexibles", li:["Medio día o día completo","Horarios personalizables","Organización sencilla"] },
+      { title:"Mejores spots para fotos", li:["Panorámicas desde el mar","Aguas transparentes","Recuerdos “wow” garantizados"] },
+      { title:"Reserva rápida", li:["Confirmación rápida por WhatsApp","Info inmediata","Cero estrés"] }
+    ],
+
+    destTitle:"Destinos",
+    destinations: [
+      {
+        title:"Isla de Ischia", prefix:"ischia",
+        short:"Explora costas increíbles y bahías encantadoras.",
+        desc:"Explora las maravillosas costas de la isla de Ischia y sus encantadoras bahías. Déjate llevar por la marea y siente la fresca brisa de la isla."
+      },
+      {
+        title:"Isla de Procida", prefix:"procida",
+        short:"Procida (Capital de la Cultura 2022) y la isla de Vivara.",
+        desc:"Vive la emoción de explorar las fantásticas costas de la isla de Procida, nombrada Capital Italiana de la Cultura 2022, y la isla de Vivara, un islote completamente deshabitado y reserva natural; siempre a bordo de uno de nuestros fantásticos gozzi, acompañados por patrones profesionales."
+      },
+      {
+        title:"Tours personalizados", prefix:"tour",
+        short:"Experiencias a medida: privadas o en grupo.",
+        desc:"Ofrecemos una amplia gama de servicios personalizados para que tu experiencia en Ischia sea inolvidable. Desde tours privados hasta excursiones en grupo, encontraremos la solución perfecta para ti. Descubre nuestros servicios y prepárate para vivir momentos únicos."
+      },
+      {
+        title:"Sunset", prefix:"sunset",
+        short:"Atardecer en barco y prosecco: inolvidable.",
+        desc:"Celebra tus momentos especiales a bordo de nuestros gozzi, con servicios personalizados para cada ocasión. Déjate acariciar por un atardecer de la isla mientras saboreas un buen prosecco italiano."
+      },
+      {
+        title:"Traslados desde/hacia Nápoles", prefix:"napoli",
+        short:"Reserva un traslado privado desde/hacia Nápoles.",
+        desc:"Reserva un traslado privado desde/hacia Nápoles."
+      },
+      {
+        title:"Traslados desde/hacia Pozzuoli", prefix:"pozzuoli",
+        short:"Reserva un traslado privado desde/hacia Pozzuoli.",
+        desc:"Reserva un traslado privado desde/hacia Pozzuoli."
+      }
+    ],
+
+    bookingTitle:"Reserva tu tour",
+    bookingSubtitle:"Rellena el formulario y recibe confirmación inmediata por WhatsApp",
+    namePlaceholder:"Nombre y apellidos",
+    peoplePlaceholder:"Número de personas",
+    bookingBtn:"Enviar reserva",
+    tourOptions:["Vuelta a la isla","Tour de cuevas","Paseo al atardecer"],
+
+    modalBtn:"Reservar por WhatsApp",
+
+    whereTitle:"📍 Dónde estamos",
+    whereText:"🚤 Estamos aquí – Puerto de Lacco Ameno",
+    contactsTitle:"💬 Contactos",
+    contactsText:"Escríbenos por WhatsApp para info y reservas 💙",
+    contactsBtn:"Reservar por WhatsApp",
+    contactsNote:"Respondemos rápido 📲",
+
+    waContactText:"¡Hola! Me gustaría reservar un tour en barco 🚤",
+    waModalTemplate:(destTitle)=>`¡Hola! Me gustaría reservar un tour en barco 🚤\nDestino: ${destTitle}\nFecha:\nNúmero de personas:`,
+    waBookingTemplate:(nome,data,tour,persone)=>`¡Hola! Me gustaría reservar un tour en barco 🚤\nNombre: ${nome}\nFecha: ${data}\nTour: ${tour}\nNúmero de personas: ${persone}`
+  },
+
+  de: {
+    nav: { home:"Start", gozzi:"Unsere Gozzi", about:"Über uns", offers:"Was wir bieten", dest:"Reiseziele", book:"Buchen", contacts:"Kontakt" },
+
+    heroTitle:"Willkommen bei Ischia Luxury",
+    heroSubtitle:"Ihre Reise, die Wunder Ischias zu entdecken, beginnt hier. Erkunden Sie kristallklares Wasser und atemberaubende Landschaften an Bord unserer exklusiven Gozzi. Wir sind bereit, unvergessliche Erlebnisse zu bieten. Willkommen an Bord!",
+    heroBtn:"Jetzt buchen",
+
+    tourTitle:"Unsere Gozzi",
+
+    aboutTitle:"Über uns",
+    aboutText:"ISCHIA LUXURY entstand aus der Leidenschaft für das Meer und die Schönheit Ischias. Wir sind ein Team lokaler Experten, das jahrelang Ozeane befahren hat und die Magie der Insel gerne mit unseren Gästen teilt. Unsere Mission ist es, authentische und unvergessliche Erlebnisse zu bieten – im Einklang mit Tradition und Umwelt.",
+
+    offersTitle:"Was wir bieten",
+    offersSubtitle:"Premium-Bootserlebnisse, um Ischia (und Umgebung) aus der schönsten Perspektive zu erleben: vom Meer aus.",
+    offerCards: [
+      { title:"Private & Gruppentouren", li:["Inselrundfahrt und Badestopps","Grotten und versteckte Buchten","Individuelle Routen"] },
+      { title:"Sunset-Erlebnis", li:["Sonnenuntergang auf dem Boot","Romantische Atmosphäre","Fotos und besondere Momente"] },
+      { title:"Komfort an Bord", li:["Entspannung und Musik","Wasser, soft drinks & prosecco","Persönliche Betreuung"] },
+      { title:"Flexible Abfahrten", li:["Halbtags oder ganztags","Flexible Zeiten","Einfache Organisation"] },
+      { title:"Top-Fotospots", li:["Panoramablicke vom Meer","Klares Wasser","„Wow“-Erinnerungen garantiert"] },
+      { title:"Schnelle Buchung", li:["Schnelle Bestätigung via WhatsApp","Sofortige Infos","Kein Stress"] }
+    ],
+
+    destTitle:"Reiseziele",
+    destinations: [
+      {
+        title:"Insel Ischia", prefix:"ischia",
+        short:"Entdecken Sie traumhafte Küsten und Buchten.",
+        desc:"Entdecken Sie die wunderschönen Küsten der Insel Ischia und ihre bezaubernden Buchten. Lassen Sie sich von der Strömung tragen und genießen Sie die frische Inselbrise."
+      },
+      {
+        title:"Insel Procida", prefix:"procida",
+        short:"Procida (Kulturhauptstadt 2022) und die Insel Vivara.",
+        desc:"Erleben Sie den Nervenkitzel, die fantastischen Küsten der Insel Procida zu erkunden – Italiens Kulturhauptstadt 2022 – sowie die Insel Vivara, ein völlig unbewohntes Inselchen und Naturschutzgebiet; immer an Bord eines unserer fantastischen Gozzi, begleitet von professionellen Skippern."
+      },
+      {
+        title:"Individuelle Touren", prefix:"tour",
+        short:"Maßgeschneiderte Erlebnisse: privat oder Gruppe.",
+        desc:"Wir bieten eine breite Palette personalisierter Services, um Ihr Ischia-Erlebnis unvergesslich zu machen. Von privaten Touren bis zu Gruppenausflügen finden wir die perfekte Lösung für Sie. Entdecken Sie unsere Angebote und erleben Sie einzigartige Momente."
+      },
+      {
+        title:"Sunset", prefix:"sunset",
+        short:"Sonnenuntergang + Prosecco: unvergesslich.",
+        desc:"Feiern Sie besondere Momente an Bord unserer Gozzi – mit personalisierten Services für jeden Anlass. Lassen Sie sich von einem Insel-Sonnenuntergang verzaubern, während Sie ausgezeichneten italienischen Prosecco genießen."
+      },
+      {
+        title:"Transfers nach/von Neapel", prefix:"napoli",
+        short:"Buchen Sie einen privaten Transfer nach/von Neapel.",
+        desc:"Buchen Sie einen privaten Transfer nach/von Neapel."
+      },
+      {
+        title:"Transfers nach/von Pozzuoli", prefix:"pozzuoli",
+        short:"Buchen Sie einen privaten Transfer nach/von Pozzuoli.",
+        desc:"Buchen Sie einen privaten Transfer nach/von Pozzuoli."
+      }
+    ],
+
+    bookingTitle:"Buchen Sie Ihre Tour",
+    bookingSubtitle:"Füllen Sie das Formular aus und erhalten Sie sofort eine Bestätigung via WhatsApp",
+    namePlaceholder:"Vor- und Nachname",
+    peoplePlaceholder:"Anzahl der Personen",
+    bookingBtn:"Buchung senden",
+    tourOptions:["Inselrundfahrt","Grottentour","Sonnenuntergangsfahrt"],
+
+    modalBtn:"Jetzt über WhatsApp buchen",
+
+    whereTitle:"📍 Wo wir sind",
+    whereText:"🚤 Sie finden uns hier – Hafen von Lacco Ameno",
+    contactsTitle:"💬 Kontakt",
+    contactsText:"Schreiben Sie uns auf WhatsApp für Infos und Buchungen 💙",
+    contactsBtn:"Über WhatsApp buchen",
+    contactsNote:"Wir antworten schnell 📲",
+
+    waContactText:"Hallo! Ich möchte eine Bootstour buchen 🚤",
+    waModalTemplate:(destTitle)=>`Hallo! Ich möchte eine Bootstour buchen 🚤\nZiel: ${destTitle}\nDatum:\nAnzahl der Personen:`,
+    waBookingTemplate:(nome,data,tour,persone)=>`Hallo! Ich möchte eine Bootstour buchen 🚤\nName: ${nome}\nDatum: ${data}\nTour: ${tour}\nAnzahl der Personen: ${persone}`
+  }
+};
+
+/* ===========================
+   APPLY LANGUAGE
+=========================== */
+function setText(id, value){
+  const el = document.getElementById(id);
+  if (el) el.innerText = value;
+}
+
+function setLanguage(lang){
+  const t = translations[lang] || translations.it;
+  currentLang = lang;
+
+  const currentLangLabel = document.getElementById("currentLangLabel");
+  if (currentLangLabel) currentLangLabel.textContent = lang.toUpperCase();
+
+  // Navbar + mobile
+  setText("nav-home", t.nav.home);
+  setText("nav-gozzi", t.nav.gozzi);
+  setText("nav-about", t.nav.about);
+  setText("nav-offers", t.nav.offers);
+  setText("nav-dest", t.nav.dest);
+  setText("nav-book", t.nav.book);
+  setText("nav-contacts", t.nav.contacts);
+
+  setText("m-home", t.nav.home);
+  setText("m-gozzi", t.nav.gozzi);
+  setText("m-about", t.nav.about);
+  setText("m-offers", t.nav.offers);
+  setText("m-dest", t.nav.dest);
+  setText("m-book", t.nav.book);
+  setText("m-contacts", t.nav.contacts);
+
+  // Hero + sezioni
+  setText("hero-title", t.heroTitle);
+  setText("hero-subtitle", t.heroSubtitle);
+  setText("hero-btn", t.heroBtn);
+
+  setText("tour-title", t.tourTitle);
+
+  setText("about-title", t.aboutTitle);
+  setText("about-text", t.aboutText);
+
+  setText("offers-title", t.offersTitle);
+  setText("offers-subtitle", t.offersSubtitle);
+
+  // Offer cards
+  setText("offer1-title", t.offerCards[0].title);
+  setText("offer1-li1", t.offerCards[0].li[0]);
+  setText("offer1-li2", t.offerCards[0].li[1]);
+  setText("offer1-li3", t.offerCards[0].li[2]);
+
+  setText("offer2-title", t.offerCards[1].title);
+  setText("offer2-li1", t.offerCards[1].li[0]);
+  setText("offer2-li2", t.offerCards[1].li[1]);
+  setText("offer2-li3", t.offerCards[1].li[2]);
+
+  setText("offer3-title", t.offerCards[2].title);
+  setText("offer3-li1", t.offerCards[2].li[0]);
+  setText("offer3-li2", t.offerCards[2].li[1]);
+  setText("offer3-li3", t.offerCards[2].li[2]);
+
+  setText("offer4-title", t.offerCards[3].title);
+  setText("offer4-li1", t.offerCards[3].li[0]);
+  setText("offer4-li2", t.offerCards[3].li[1]);
+  setText("offer4-li3", t.offerCards[3].li[2]);
+
+  setText("offer5-title", t.offerCards[4].title);
+  setText("offer5-li1", t.offerCards[4].li[0]);
+  setText("offer5-li2", t.offerCards[4].li[1]);
+  setText("offer5-li3", t.offerCards[4].li[2]);
+
+  setText("offer6-title", t.offerCards[5].title);
+  setText("offer6-li1", t.offerCards[5].li[0]);
+  setText("offer6-li2", t.offerCards[5].li[1]);
+  setText("offer6-li3", t.offerCards[5].li[2]);
+
+  // Destinations title
+  setText("dest-title", t.destTitle);
+
+  // Booking
+  setText("booking-title", t.bookingTitle);
+  setText("booking-subtitle", t.bookingSubtitle);
+  const nome = document.getElementById("nome");
+  const persone = document.getElementById("persone");
+  if (nome) nome.placeholder = t.namePlaceholder;
+  if (persone) persone.placeholder = t.peoplePlaceholder;
+  setText("booking-btn", t.bookingBtn);
+
+  // Booking select options (text + value)
+  const opt1 = document.getElementById("tour-opt-1");
+  const opt2 = document.getElementById("tour-opt-2");
+  const opt3 = document.getElementById("tour-opt-3");
+  if (opt1){ opt1.innerText = t.tourOptions[0]; opt1.value = t.tourOptions[0]; }
+  if (opt2){ opt2.innerText = t.tourOptions[1]; opt2.value = t.tourOptions[1]; }
+  if (opt3){ opt3.innerText = t.tourOptions[2]; opt3.value = t.tourOptions[2]; }
+
+  // Modal button label (anchor text)
+  const modalBook = document.getElementById("modal-book");
+  if (modalBook) modalBook.innerText = t.modalBtn;
+
+  // Contacts
+  setText("where-title", t.whereTitle);
+  setText("where-text", t.whereText);
+  setText("contacts-title", t.contactsTitle);
+  setText("contacts-text", t.contactsText);
+
+  const waBtn = document.getElementById("contacts-wa-btn");
+  if (waBtn){
+    waBtn.innerText = t.contactsBtn;
+    waBtn.href = "https://wa.me/"+phone+"?text="+encodeURIComponent(t.waContactText);
+  }
+
+  setText("contacts-note", t.contactsNote);
+
+  // Re-render destinations in the selected language
+  initDestinations();
+
+  localStorage.setItem("siteLang", lang);
+  document.getElementById("langMenu")?.classList.remove("open");
+}
+
+/* ===========================
+   LANGUAGE MENU UI
+=========================== */
+const langMenu = document.getElementById("langMenu");
+const langBtn = document.getElementById("langBtn");
+const langDropdown = document.getElementById("langDropdown");
+
+if (langBtn) {
+  langBtn.addEventListener("click", (e) => { e.stopPropagation(); langMenu?.classList.toggle("open"); });
+  window.addEventListener("click", (e) => { if (langMenu && !langMenu.contains(e.target)) langMenu.classList.remove("open"); });
+}
+if (langDropdown) {
+  langDropdown.querySelectorAll("button").forEach(btn =>
+    btn.addEventListener("click", () => setLanguage(btn.dataset.lang))
+  );
+}
+
+/* ===========================
+   DESTINAZIONI (multilingua)
+=========================== */
+const destinationsContainer = document.getElementById("destinationsContainer");
+const IMG_FOLDER = "/images";
+const MAX_PER_CATEGORY = 11;
+const EXT_LIST = ["jpg","jpeg","JPG","JPEG"];
+
+function tryLoadImage(url){
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = async () => {
+      if (img.decode) { try { await img.decode(); } catch(e) {} }
+      resolve(url);
+    };
+    img.onerror = () => resolve(null);
+    img.src = url;
+  });
+}
+
+async function loadImagesForPrefix(prefix){
+  const images = [];
+  for (let i = 1; i <= MAX_PER_CATEGORY; i++){
+    let found = null;
+    for (const ext of EXT_LIST){
+      const url = `${IMG_FOLDER}/${prefix}${i}.${ext}`;
+      const ok = await tryLoadImage(url);
+      if (ok){ found = ok; break; }
+    }
+    if (found) images.push(found);
+  }
+  return images;
+}
+
+function getDestinationsForLang(){
+  const t = translations[currentLang] || translations.it;
+  return (t.destinations || []).map(d => ({...d}));
+}
+
+function renderDestinations(visibleList){
+  if(!destinationsContainer) return;
+
+  if(visibleList.length === 0){
+    destinationsContainer.innerHTML = `
+      <p style="color:#003366;font-weight:600;">
+        Nessuna foto trovata in <b>/images</b>.<br>
+        Controlla che i file si chiamino tipo: <b>napoli1.jpg</b>, <b>napoli2.jpg</b>… (oppure .JPG/.jpeg)
+      </p>
+    `;
+    return;
+  }
+
+  destinationsContainer.innerHTML = visibleList.map((d, i) => `
+    <div class="destination-card" onclick="openModal(${i})">
+      <img src="${d.images[0]}" alt="${d.title}">
+      <div class="destination-info">
+        <h3>${d.title}</h3>
+        <p>${d.short || ""}</p>
+      </div>
+    </div>
+  `).join("");
+
+  window.__destinationsVisible = visibleList;
+}
+
+async function initDestinations(){
+  if(!destinationsContainer) return;
+
+  destinationsContainer.innerHTML = `<p style="color:#003366;font-weight:600;">Caricamento foto…</p>`;
+
+  const list = getDestinationsForLang();
+  for (const d of list){
+    d.images = await loadImagesForPrefix(d.prefix);
+  }
+
+  const visible = list.filter(d => d.images && d.images.length > 0);
+  renderDestinations(visible);
+}
+
+/* ===========================
+   MODAL + SLIDESHOW
+=========================== */
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const modalDesc = document.getElementById("modal-desc");
+const modalBook = document.getElementById("modal-book");
+const slideCounter = document.getElementById("slideCounter");
+const slidePrev = document.getElementById("slidePrev");
+const slideNext = document.getElementById("slideNext");
+
+let activeDestIndex = 0;
+let activeSlideIndex = 0;
+let autoTimer = null;
+
+function getActiveDest(){
+  const list = window.__destinationsVisible || [];
+  return list[activeDestIndex];
+}
+function isSingle(){
+  const d = getActiveDest();
+  return !d || !d.images || d.images.length <= 1;
+}
+function setArrowsState(){
+  const single = isSingle();
+  if (slidePrev && slideNext){
+    if(single){
+      slidePrev.classList.add("is-disabled");
+      slideNext.classList.add("is-disabled");
+    }else{
+      slidePrev.classList.remove("is-disabled");
+      slideNext.classList.remove("is-disabled");
+    }
+  }
+}
+function updateSlide(){
+  const d = getActiveDest();
+  if(!d || !d.images || d.images.length === 0) return;
+
+  if (modalImg){
+    modalImg.src = d.images[activeSlideIndex];
+    modalImg.alt = `${d.title} ${activeSlideIndex + 1}`;
+  }
+  if (modalDesc) modalDesc.innerText = d.desc || "";
+  if (slideCounter) slideCounter.innerText = `${activeSlideIndex + 1} / ${d.images.length}`;
+
+  setArrowsState();
+
+  // WhatsApp message in current language
+  const t = translations[currentLang] || translations.it;
+  const message = t.waModalTemplate(d.title);
+  if (modalBook) modalBook.href = "https://wa.me/"+phone+"?text="+encodeURIComponent(message);
+}
+
+function startAuto(){
+  stopAuto();
+  if(isSingle()) return;
+  autoTimer = setInterval(() => nextSlide(false), 5000);
+}
+function stopAuto(){
+  if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+}
+function nextSlide(resetTimer = true){
+  const d = getActiveDest();
+  if(!d || !d.images || d.images.length === 0) return;
+
+  if(d.images.length === 1){
+    activeSlideIndex = 0;
+    updateSlide();
+    return;
+  }
+
+  activeSlideIndex = (activeSlideIndex + 1) % d.images.length;
+  updateSlide();
+  if(resetTimer) startAuto();
+}
+function prevSlide(resetTimer = true){
+  const d = getActiveDest();
+  if(!d || !d.images || d.images.length === 0) return;
+
+  if(d.images.length === 1){
+    activeSlideIndex = 0;
+    updateSlide();
+    return;
+  }
+
+  activeSlideIndex = (activeSlideIndex - 1 + d.images.length) % d.images.length;
+  updateSlide();
+  if(resetTimer) startAuto();
+}
+
+function openModal(index){
+  const list = window.__destinationsVisible || [];
+  if(!list[index]) return;
+
+  activeDestIndex = index;
+  activeSlideIndex = 0;
+
+  if (modal){
+    modal.style.display = "flex";
+    modal.setAttribute("aria-hidden", "false");
+  }
+
+  updateSlide();
+  startAuto();
+}
+function closeModal(){
+  if (modal){
+    modal.style.display="none";
+    modal.setAttribute("aria-hidden","true");
+  }
+  stopAuto();
+}
+
+if (slideNext) slideNext.addEventListener("click", (e) => { e.stopPropagation(); if(!isSingle()) nextSlide(true); });
+if (slidePrev) slidePrev.addEventListener("click", (e) => { e.stopPropagation(); if(!isSingle()) prevSlide(true); });
+
+window.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+window.addEventListener("keydown", (e) => {
+  if(!modal || modal.style.display !== "flex") return;
+  if(e.key === "Escape") closeModal();
+  if(e.key === "ArrowRight" && !isSingle()) nextSlide(true);
+  if(e.key === "ArrowLeft" && !isSingle()) prevSlide(true);
+});
+
+/* ===========================
+   BOOKING WHATSAPP (multilingua)
+=========================== */
+const bookingForm = document.getElementById("bookingForm");
+if (bookingForm) {
+  bookingForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    const nome = document.getElementById("nome")?.value.trim() || "";
+    const data = document.getElementById("data")?.value || "";
+    const tour = document.getElementById("tour")?.value || "";
+    const persone = document.getElementById("persone")?.value || "";
+
+    const t = translations[currentLang] || translations.it;
+    const message = t.waBookingTemplate(nome, data, tour, persone);
+    window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message), "_blank");
+  });
+}
+
+/* ===========================
+   START
+=========================== */
+setLanguage(currentLang);
+</script>
+
+</body>
+</html>
